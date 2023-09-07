@@ -11,7 +11,7 @@ module.exports = {
     outline: {
       label: "目录",
     },
-    externalLinkIcon:true,
+    externalLinkIcon: true,
     editLink: {
       pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
     },
@@ -35,7 +35,7 @@ module.exports = {
         'Copyright © 2019-present <a href="https://github.com/yyx990803">Evan You</a>',
     },
     nav: [
-      { text: "首页", link: "/home", activeMatch: "/home" },
+      { text: "首页", link: "/index", activeMatch: "/index" },
       { text: "作品", link: "/works/", activeMatch: "/works/" },
       { text: "博客", link: "/articles/", activeMatch: "/articles/" },
       { text: "关于我", link: "/mine/", activeMatch: "/mine/" },
