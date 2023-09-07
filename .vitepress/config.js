@@ -1,6 +1,7 @@
 module.exports = {
+  base: "./",
   lang: "zh",
-  srcDir: "./src/pages",
+  srcDir: "../src/pages",
   title: "Zero",
   themeConfig: {
     logo: "/logo.svg",
@@ -40,6 +41,7 @@ module.exports = {
       { text: "博客", link: "/articles/", activeMatch: "/articles/" },
       { text: "关于我", link: "/mine/", activeMatch: "/mine/" },
     ],
+
     sidebar: {
       "/articles/": [
         {
