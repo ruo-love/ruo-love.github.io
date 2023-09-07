@@ -1,0 +1,26 @@
+:root {
+    --vp-home-hero-name-color: #000;
+    --vp-button-brand-bg: #000;
+    --vp-c-brand-1: #000;
+
+    /* 状态颜色 */
+    --vp-badge-info-border: transparent;
+    --vp-badge-info-text: var(--vp-c-text-2);
+    --vp-badge-info-bg: var(--vp-c-default-soft);
+
+    --vp-badge-tip-border: transparent;
+    --vp-badge-tip-text: #fff;
+    --vp-badge-tip-bg: #292d3e;
+
+    --vp-badge-warning-border: transparent;
+    --vp-badge-warning-text: #fff;
+    --vp-badge-warning-bg: #41b883;
+
+    --vp-badge-danger-border: transparent;
+    --vp-badge-danger-text: #fff;
+    --vp-badge-danger-bg: #ff102f;
+}
+
+.active {
+    font-size: 20px !important;
+}
