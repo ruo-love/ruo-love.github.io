@@ -1,5 +1,4 @@
----
-layout: doc
+
 
 # vue
 
@@ -1364,4 +1363,3 @@ beforeDestory 和 destoryed 更名为 onBeforeUnmount 和 onUnmounted；
 然后用 setup 代替了两个钩子函数 beforeCreate 和 created；
 新增了两个开发环境用于调试的钩子，在组件更新时 onRenderTracked 会跟踪组件里所有变量和方法的变化、每次触发渲染时 onRenderTriggered 会返回发生变化的新旧值，可以让我们进行有针对性调试；
 
----
