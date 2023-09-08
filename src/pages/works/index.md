@@ -1,11 +1,12 @@
----
-outline: deep
----
 ### Title <Badge type="info">custom element</Badge>
+
 ### Title <Badge type="tip">custom element</Badge>
+
 ### Title <Badge type="warning">custom element</Badge>
+
 ### Title <Badge type="danger">custom element</Badge>
-# Runtime API BOOTSTRAP 
+
+# Runtime API BOOTSTRAP
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
 
