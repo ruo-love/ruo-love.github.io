@@ -7,6 +7,6 @@ const { Layout } = DefaultTheme;
 
 <template>
   <Layout>
-    <template #home-hero-image> My custom sidebar top content </template>
+    <template #home-hero-image><img src="../images/banner.png" /></template>
   </Layout>
 </template>

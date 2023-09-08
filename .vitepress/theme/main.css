@@ -1,8 +1,10 @@
 :root {
-    --vp-home-hero-name-color: #000;
-    --vp-button-brand-bg: #000;
-    --vp-c-brand-1: #000;
-
+    --vp-home-hero-name-color: #ec9b62;
+    --vp-button-brand-bg: #060d1f;
+    --vp-button-alt-bg:#ec9b62;
+    --vp-c-brand-1: #392f3c;
+    --vp-c-indigo-2: #95989c;
+    --vp-button-alt-text:#fff;
     /* 状态颜色 */
     --vp-badge-info-border: transparent;
     --vp-badge-info-text: var(--vp-c-text-2);

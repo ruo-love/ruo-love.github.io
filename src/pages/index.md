@@ -3,22 +3,25 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Zero"
+  text: ""
+  tagline: 探索技术,丰富生活。
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Github
+      link: "https://github.com/ruo-love"
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: CSDN
+      link: https://blog.csdn.net/SAXX2
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 作品集
+    details: 独立开发的一些项目、封装的一些“轮子”
+    link: /works/
+  - title: 博客文章
+    details: 分享的一些技术博客文章、工作学习遇到的各种“坑”
+    link: /articles/
+  - title: 关于我
+    details: 享受生命中的各种奇遇，感悟生活的所以点滴
+    link: /mine/
 ---

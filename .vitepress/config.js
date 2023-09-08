@@ -1,10 +1,10 @@
 module.exports = {
   lang: "zh",
-  base:'/',
+  base: "/",
   srcDir: "./src/pages/",
   title: "Zero",
   themeConfig: {
-    logo: "/logo.svg",
+    logo: "/avatar.png",
     lastUpdated: true,
     search: {
       provider: "local",
@@ -16,27 +16,13 @@ module.exports = {
     editLink: {
       pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
     },
-    socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
-      { icon: "twitter", link: "" },
-      // You can also add custom icons by passing SVG as string:
-      {
-        icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Dribbble</title><path d="M12...6.38z"/></svg>',
-        },
-        link: "",
-        // You can include a custom label for accessibility too (optional but recommended):
-        ariaLabel: "cool link",
-      },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/ruo-love" }],
     footer: {
-      message:
-        'Released under the <a href="https://github.com/vuejs/vitepress/blob/main/LICENSE">MIT License</a>.',
-      copyright:
-        'Copyright © 2019-present <a href="https://github.com/yyx990803">Evan You</a>',
+      message: "",
+      copyright: "",
     },
     nav: [
-      { text: "首页", link: "/", activeMatch: "/" },
+      { text: "首页", link: "/" },
       { text: "作品", link: "/works/", activeMatch: "/works/" },
       { text: "博客", link: "/articles/", activeMatch: "/articles/" },
       { text: "关于我", link: "/mine/", activeMatch: "/mine/" },
@@ -45,7 +31,39 @@ module.exports = {
     sidebar: {
       "/articles/": [
         {
-          text: "articles",
+          text: "前端",
+          items: [
+            { text: "Index", link: "/articles/" },
+            { text: "Introduction", link: "/articles/introduction" },
+            { text: "Getting Started", link: "/articles/getting-started" },
+          ],
+        },
+        {
+          text: "后端",
+          items: [
+            { text: "Index", link: "/articles/" },
+            { text: "Introduction", link: "/articles/introduction" },
+            { text: "Getting Started", link: "/articles/getting-started" },
+          ],
+        },
+        {
+          text: "数据库",
+          items: [
+            { text: "Index", link: "/articles/" },
+            { text: "Introduction", link: "/articles/introduction" },
+            { text: "Getting Started", link: "/articles/getting-started" },
+          ],
+        },
+        {
+          text: "Python",
+          items: [
+            { text: "Index", link: "/articles/" },
+            { text: "Introduction", link: "/articles/introduction" },
+            { text: "Getting Started", link: "/articles/getting-started" },
+          ],
+        },
+        {
+          text: "Flutter",
           items: [
             { text: "Index", link: "/articles/" },
             { text: "Introduction", link: "/articles/introduction" },
@@ -66,7 +84,7 @@ module.exports = {
     },
   },
   markdown: {
-    theme: "material-theme-palenight",
+    theme: "vitesse-light",
     lineNumbers: true,
     anchor: {
       slugify(str) {
