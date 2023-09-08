@@ -1,3 +1,6 @@
+const sidebar_works = require("./config/sidebar/works");
+const sidebar_articles = require("./config/sidebar/articles");
+const nav_config = require("./config/nav");
 module.exports = {
   lang: "zh",
   srcDir: "./src/pages/",
@@ -10,6 +13,7 @@ module.exports = {
     },
     outline: {
       label: "目录",
+      level: 4,
     },
     externalLinkIcon: true,
     editLink: {
@@ -20,66 +24,10 @@ module.exports = {
       message: "",
       copyright: "",
     },
-    nav: [
-      { text: "首页", link: "/" },
-      { text: "作品", link: "/works/", activeMatch: "/works/" },
-      { text: "博客", link: "/articles/", activeMatch: "/articles/" },
-      { text: "关于我", link: "/mine/", activeMatch: "/mine/" },
-    ],
-
+    nav: nav_config,
     sidebar: {
-      "/articles/": [
-        {
-          text: "前端",
-          items: [
-            { text: "Index", link: "/articles/" },
-            { text: "Introduction", link: "/articles/introduction" },
-            { text: "Getting Started", link: "/articles/getting-started" },
-          ],
-        },
-        {
-          text: "后端",
-          items: [
-            { text: "Index", link: "/articles/" },
-            { text: "Introduction", link: "/articles/introduction" },
-            { text: "Getting Started", link: "/articles/getting-started" },
-          ],
-        },
-        {
-          text: "数据库",
-          items: [
-            { text: "Index", link: "/articles/" },
-            { text: "Introduction", link: "/articles/introduction" },
-            { text: "Getting Started", link: "/articles/getting-started" },
-          ],
-        },
-        {
-          text: "Python",
-          items: [
-            { text: "Index", link: "/articles/" },
-            { text: "Introduction", link: "/articles/introduction" },
-            { text: "Getting Started", link: "/articles/getting-started" },
-          ],
-        },
-        {
-          text: "Flutter",
-          items: [
-            { text: "Index", link: "/articles/" },
-            { text: "Introduction", link: "/articles/introduction" },
-            { text: "Getting Started", link: "/articles/getting-started" },
-          ],
-        },
-      ],
-      "/works/": [
-        {
-          text: "works",
-          items: [
-            { text: "Index", link: "/works/" },
-            { text: "Introduction", link: "/works/introduction" },
-            { text: "Getting Started", link: "/works/getting-started" },
-          ],
-        },
-      ],
+      "/articles/": sidebar_articles,
+      "/works/": sidebar_works,
     },
   },
   markdown: {

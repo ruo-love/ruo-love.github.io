@@ -1,11 +1,11 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
+
 layout: home
 
 hero:
   name: "Zero"
   text: ""
-  tagline: 探索技术,丰富生活。
+  tagline: Love and knowledge endure throughout the universe.
   actions:
     - theme: brand
       text: Github
