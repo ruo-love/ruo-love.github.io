@@ -1,7 +1,7 @@
 module.exports = {
-  base: "./",
   lang: "zh",
-  srcDir: "../src/pages",
+  base:'/',
+  srcDir: "./src/pages/",
   title: "Zero",
   themeConfig: {
     logo: "/logo.svg",
@@ -36,7 +36,7 @@ module.exports = {
         'Copyright © 2019-present <a href="https://github.com/yyx990803">Evan You</a>',
     },
     nav: [
-      { text: "首页", link: "/index", activeMatch: "/index" },
+      { text: "首页", link: "/", activeMatch: "/" },
       { text: "作品", link: "/works/", activeMatch: "/works/" },
       { text: "博客", link: "/articles/", activeMatch: "/articles/" },
       { text: "关于我", link: "/mine/", activeMatch: "/mine/" },

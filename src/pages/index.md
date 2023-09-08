@@ -3,21 +3,22 @@
 layout: home
 
 hero:
-  name: "Zero"
-  # tagline: '尽人事听天命，把握好当下的每一天。'
+  name: "My Awesome Project"
+  text: "A VitePress Site"
+  tagline: My great project tagline
   actions:
     - theme: brand
       text: Markdown Examples
-      link: /works/
+      link: /markdown-examples
     - theme: alt
       text: API Examples
-      link: /articles/
+      link: /api-examples
 
 features:
-  - title: 作品集
-    details: 封装的各种轮子、独立开发的个人项目
-  - title: BLOGS
-    details: 写的一些垃圾分享文章
-  - title: 关于自己
-    details: 记录工作生活点滴，喜欢感慨
+  - title: Feature A
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Feature B
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Feature C
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
