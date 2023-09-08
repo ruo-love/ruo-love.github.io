@@ -1,6 +1,5 @@
 module.exports = {
   lang: "zh",
-  base: "/zero/",
   srcDir: "./src/pages/",
   title: "Zero",
   themeConfig: {
