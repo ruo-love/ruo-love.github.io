@@ -3,7 +3,7 @@ const sidebar_articles = require("./config/sidebar/articles");
 const nav_config = require("./config/nav");
 module.exports = {
   lang: "zh",
-  srcDir: "./src/pages/",
+
   title: "Zero",
   themeConfig: {
     logo: "/avatar.png",
@@ -13,7 +13,7 @@ module.exports = {
     },
     outline: {
       label: "目录",
-      level: 4,
+      level: 'deep',
     },
     externalLinkIcon: true,
     editLink: {
@@ -30,6 +30,8 @@ module.exports = {
       "/works/": sidebar_works,
     },
   },
+  srcDir: "./src/pages/",
+  assetsDir: "./src/static/",
   markdown: {
     theme: "vitesse-light",
     lineNumbers: true,

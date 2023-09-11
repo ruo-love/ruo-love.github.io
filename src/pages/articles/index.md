@@ -181,7 +181,7 @@ Function.prototype.myBind = function (ctx, ...args) {
         }
 ```
 
-##### 排序
+##### 排序 {#sort}
 
 1. 冒泡排序
 
