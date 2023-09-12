@@ -1,59 +1,30 @@
-### Title <Badge type="info">custom element</Badge>
+ 
+#### 作品集
 
-### Title <Badge type="tip">custom element</Badge>
+| name        |      time      |  doc |  link |
+| ------------- | :----------: | ----: |----: |
+| col 3 is      | right-aligned | $1600  | $1600 |
+| col 2 is      |   centered    |   $12  |   $12 |
+| zebra stripes |   are neat    |    $1  |    $1 |
 
-### Title <Badge type="warning">custom element</Badge>
-
-### Title <Badge type="danger">custom element</Badge>
-
-# Runtime API BOOTSTRAP
-
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
-
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
-
-```md
-<script setup>
-import { useData } from 'vitepress'
-
-const { theme, page, frontmatter } = useData()
-</script>
-
-## BOOTSTRAP
-
-### Theme Data
-
-<pre>{{ theme }}</pre>
-
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-```
 
 <script setup>
-import { useData } from 'vitepress'
+import { VPTeamMembers } from 'vitepress/theme'
 
-const { site, theme, page, frontmatter } = useData()
+const members = [
+  {
+    avatar: '../avatar.png',
+    name: 'Zero',
+    title: 'Creator',
+    links: [
+      { icon: 'github', link: 'https://github.com/ruo-love' }
+    ]
+  }
+]
 </script>
 
-## Results
+# Team
 
-### Theme Data
 
-<pre>{{ theme }}</pre>
 
-### Page Data
-
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+<VPTeamMembers size="small" :members="members" />
