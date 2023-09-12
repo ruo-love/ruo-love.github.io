@@ -21,7 +21,7 @@ features:
   - title: 博客文章
     details: 分享一些技术博客、工作学习遇到的各种“坑”
     link: /articles/
-  - title: 关于我
+  - title: 短短一生
     details: 享受生命中的各种奇遇，感悟生活中的点点滴滴
     link: /mine/
 ---

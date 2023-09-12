@@ -4,7 +4,7 @@ module.exports = [
     link: "/works/jstool/",
   },
   {
-    text: "腾讯云V3密钥自动生成库",
+    text: "腾讯云V3签名自动生成库",
     link: "/works/tencentcloudv3/",
   },
   {
@@ -20,19 +20,19 @@ module.exports = [
     link: "/works/iframePreview/foodAdminMobile-mobile.html",
   },
   {
-    text: "Zrui",
+    text: "Zrui vue3 组件库",
     link: "/works/iframePreview/zrui-pc.html",
   },
   {
     text: "Flutter桌面图床",
-    link: "/articles/",
+    link: "/works/flutterWindowsPhotoAlbums/",
   },
   {
     text: "uni音乐app",
-    link: "/articles/",
+    link: "/works/uniMusic/",
   },
   {
-    text: "Flutter音乐app",
-    link: "/articles/",
+    text: "RuoMU",
+    link: "/works/flutterMusic/",
   },
 ];
