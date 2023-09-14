@@ -78,8 +78,6 @@ compilation 对象代表一次资源的构建，compilation 实例能够访问�
 
 ### 生命周期简图
 
-![Webpack 插件生命周期](/imgs/source/plugin.jpg)
-
 ## 开发一个插件
 
 ### 最简单的插件
@@ -222,7 +220,7 @@ For help, see: https://nodejs.org/en/docs/inspecto
 
 此时控制台会显示一个绿色的图标
 
-![调试控制台](/imgs/source/debug.png)
+<!-- ![调试控制台](/imgs/source/debug.png) -->
 
 4. 点击绿色的图标进入调试模式。
 
@@ -251,36 +249,39 @@ class BannerWebpackPlugin {
     const extensions = ["js", "css"];
 
     // emit是异步串行钩子
-    compiler.hooks.emit.tapAsync("BannerWebpackPlugin", (compilation, callback) => {
-      // compilation.assets包含所有即将输出的资源
-      // 通过过滤只保留需要处理的文件
-      const assetPaths = Object.keys(compilation.assets).filter((path) => {
-        const splitted = path.split(".");
-        return extensions.includes(splitted[splitted.length - 1]);
-      });
+    compiler.hooks.emit.tapAsync(
+      "BannerWebpackPlugin",
+      (compilation, callback) => {
+        // compilation.assets包含所有即将输出的资源
+        // 通过过滤只保留需要处理的文件
+        const assetPaths = Object.keys(compilation.assets).filter((path) => {
+          const splitted = path.split(".");
+          return extensions.includes(splitted[splitted.length - 1]);
+        });
 
-      assetPaths.forEach((assetPath) => {
-        const asset = compilation.assets[assetPath];
+        assetPaths.forEach((assetPath) => {
+          const asset = compilation.assets[assetPath];
 
-        const source = `/*
+          const source = `/*
 * Author: ${this.options.author}
 */\n${asset.source()}`;
 
-        // 覆盖资源
-        compilation.assets[assetPath] = {
-          // 资源内容
-          source() {
-            return source;
-          },
-          // 资源大小
-          size() {
-            return source.length;
-          },
-        };
-      });
+          // 覆盖资源
+          compilation.assets[assetPath] = {
+            // 资源内容
+            source() {
+              return source;
+            },
+            // 资源大小
+            size() {
+              return source.length;
+            },
+          };
+        });
 
-      callback();
-    });
+        callback();
+      }
+    );
   }
 }
 
@@ -307,14 +308,17 @@ class CleanWebpackPlugin {
     // 获取操作文件的对象
     const fs = compiler.outputFileSystem;
     // emit是异步串行钩子
-    compiler.hooks.emit.tapAsync("CleanWebpackPlugin", (compilation, callback) => {
-      // 获取输出文件目录
-      const outputPath = compiler.options.output.path;
-      // 删除目录所有文件
-      const err = this.removeFiles(fs, outputPath);
-      // 执行成功err为undefined，执行失败err就是错误原因
-      callback(err);
-    });
+    compiler.hooks.emit.tapAsync(
+      "CleanWebpackPlugin",
+      (compilation, callback) => {
+        // 获取输出文件目录
+        const outputPath = compiler.options.output.path;
+        // 删除目录所有文件
+        const err = this.removeFiles(fs, outputPath);
+        // 执行成功err为undefined，执行失败err就是错误原因
+        callback(err);
+      }
+    );
   }
 
   removeFiles(fs, path) {
@@ -412,22 +416,31 @@ class InlineChunkWebpackPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap("InlineChunkWebpackPlugin", (compilation) => {
-      const hooks = HtmlWebpackPlugin.getHooks(compilation);
+    compiler.hooks.compilation.tap(
+      "InlineChunkWebpackPlugin",
+      (compilation) => {
+        const hooks = HtmlWebpackPlugin.getHooks(compilation);
 
-      hooks.alterAssetTagGroups.tap("InlineChunkWebpackPlugin", (assets) => {
-        assets.headTags = this.getInlineTag(assets.headTags, compilation.assets);
-        assets.bodyTags = this.getInlineTag(assets.bodyTags, compilation.assets);
-      });
-
-      hooks.afterEmit.tap("InlineChunkHtmlPlugin", () => {
-        Object.keys(compilation.assets).forEach((assetName) => {
-          if (this.tests.some((test) => assetName.match(test))) {
-            delete compilation.assets[assetName];
-          }
+        hooks.alterAssetTagGroups.tap("InlineChunkWebpackPlugin", (assets) => {
+          assets.headTags = this.getInlineTag(
+            assets.headTags,
+            compilation.assets
+          );
+          assets.bodyTags = this.getInlineTag(
+            assets.bodyTags,
+            compilation.assets
+          );
         });
-      });
-    });
+
+        hooks.afterEmit.tap("InlineChunkHtmlPlugin", () => {
+          Object.keys(compilation.assets).forEach((assetName) => {
+            if (this.tests.some((test) => assetName.match(test))) {
+              delete compilation.assets[assetName];
+            }
+          });
+        });
+      }
+    );
   }
 
   getInlineTag(tags, assets) {
@@ -438,7 +451,11 @@ class InlineChunkWebpackPlugin {
 
       if (!this.tests.some((test) => scriptName.match(test))) return tag;
 
-      return { tagName: "script", innerHTML: assets[scriptName].source(), closeTag: true };
+      return {
+        tagName: "script",
+        innerHTML: assets[scriptName].source(),
+        closeTag: true,
+      };
     });
   }
 }
