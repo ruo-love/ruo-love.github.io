@@ -21,7 +21,7 @@ module.exports = [
   {
     text: "前端工程化",
     items: [
-      { text: "Webpack", link: "/articles/project/" },
+      { text: "Webpack", link: "/articles/project/webpack/" },
       { text: "Vite", link: "/works/introduction" },
     ],
   },
