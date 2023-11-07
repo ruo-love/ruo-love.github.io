@@ -1,5 +1,9 @@
 module.exports = [
   {
+    text: "vue3 Hooks",
+    link: "/works/vuehooks/",
+  },
+  {
     text: "js工具函数库",
     link: "/works/jstool/",
   },
