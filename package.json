@@ -10,7 +10,7 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "server:preview": "npm run docs:build && cd ./server && node app.js"
+    "server:preview": "npm run build && cd ./server && node app.js"
   },
   "keywords": [],
   "author": "",

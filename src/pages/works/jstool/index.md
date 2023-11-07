@@ -1,14 +1,15 @@
 ### install
+
 ```
 npm i @zrcode/jstool
 
 ```
+
 ### GITHUB
 
 https://github.com/ruo-love/zrtool
 
 ### 文档
-
 
 #### encrypto [Aes]
 
@@ -26,7 +27,7 @@ function encrypto(data: any, CryptoSecret: string) :string
 function decrypto(cipherText: string, CryptoSecret: string):string
 ```
 
-#### copyToClipboard 
+#### copyToClipboard
 
 一件复制
 
@@ -91,12 +92,11 @@ function copyToClipboard(text: string)
 #### urlParamsMap
 
 - **Description**: Parses query parameters from a URL.
-- **Parameters**: 
+- **Parameters**:
   - url (string): The URL to parse query parameters from (default is the current page's URL).
 - **Returns**: Object (a key-value map of query parameters)
 
 Please note that the descriptions and return types are based on the provided code and may need further clarification or validation based on your specific use case.
-
 
 #### filterValue
 
