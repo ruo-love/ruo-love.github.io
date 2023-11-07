@@ -8,6 +8,96 @@ npm i @zrcode/jstool
 https://github.com/ruo-love/zrtool
 
 ### 文档
+
+
+#### encrypto [Aes]
+
+加密数据
+
+```js
+function encrypto(data: any, CryptoSecret: string) :string
+```
+
+#### decrypto [Aes]
+
+解密数据
+
+```js
+function decrypto(cipherText: string, CryptoSecret: string):string
+```
+
+#### copyToClipboard 
+
+一件复制
+
+```js
+function copyToClipboard(text: string)
+```
+
+#### isWeChatBrowser
+
+- **Description**: Checks if the current environment is a WeChat browser or a WeChat Mini Program.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is WeChat, false otherwise)
+
+#### isAndroid
+
+- **Description**: Checks if the current environment is an Android device.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is Android, false otherwise)
+
+#### isIOS
+
+- **Description**: Checks if the current environment is an iOS device (iPhone, iPad, iPod, Mac, or iOS).
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is iOS, false otherwise)
+
+#### isPc
+
+- **Description**: Checks if the current environment is a PC (Windows or Mac).
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is a PC, false otherwise)
+
+#### isIPad
+
+- **Description**: Checks if the current environment is an iPad device.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is an iPad, false otherwise)
+
+#### isIPhone
+
+- **Description**: Checks if the current environment is an iPhone device.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is an iPhone, false otherwise)
+
+#### isMacintosh
+
+- **Description**: Checks if the current environment is a Macintosh computer.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is a Macintosh, false otherwise)
+
+#### isWindows
+
+- **Description**: Checks if the current environment is a Windows computer.
+- **Parameters**: None
+- **Returns**: boolean (true if the environment is Windows, false otherwise)
+
+#### currentLanguage
+
+- **Description**: Retrieves the current browser's language and language list.
+- **Parameters**: None
+- **Returns**: [string, readonly string[]] (a tuple containing the current language and a list of supported languages)
+
+#### urlParamsMap
+
+- **Description**: Parses query parameters from a URL.
+- **Parameters**: 
+  - url (string): The URL to parse query parameters from (default is the current page's URL).
+- **Returns**: Object (a key-value map of query parameters)
+
+Please note that the descriptions and return types are based on the provided code and may need further clarification or validation based on your specific use case.
+
+
 #### filterValue
 
 过滤数字，可用于表单 filter
