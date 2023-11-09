@@ -1,5 +1,9 @@
 module.exports = [
   {
+    text: "storage",
+    link: "/works/storage/"
+  },
+  {
     text: "vite-zero-env-plugin",
     link: "/works/viteZeroEnvPlugin/"
   },
