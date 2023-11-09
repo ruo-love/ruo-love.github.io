@@ -1,5 +1,9 @@
 module.exports = [
   {
+    text: "vite-zero-env-plugin",
+    link: "/works/viteZeroEnvPlugin/"
+  },
+  {
     text: "vue3 Hooks",
     link: "/works/vuehooks/",
   },
