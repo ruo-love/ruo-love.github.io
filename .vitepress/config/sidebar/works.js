@@ -1,8 +1,12 @@
 module.exports = [
   {
-    text: "zero-keeper",
+    text: "crisp-log",
+     link: "/works/crispLog/"
+   },
+  {
+   text: "zero-keeper",
     link: "/works/zeroKeeper/"
-  },
+  }, 
   {
     text: "storage",
     link: "/works/storage/"
