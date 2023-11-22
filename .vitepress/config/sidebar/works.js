@@ -1,5 +1,9 @@
 module.exports = [
   {
+    text: "zero-keeper",
+    link: "/works/zeroKeeper/"
+  },
+  {
     text: "storage",
     link: "/works/storage/"
   },
