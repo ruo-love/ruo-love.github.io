@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Zero"
   text: "Hello, Welcome to my blog!"
-  tagline: "'Hello World' is where the programmer's dream begins, 'Ctrl + C, Ctrl + V' is the dream transmission!"
+  # tagline: "'Hello World' is where the programmer's dream begins, 'Ctrl + C, Ctrl + V' is the dream transmission!"
   actions:
     - theme: brand
       text: Github

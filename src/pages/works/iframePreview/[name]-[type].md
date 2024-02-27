@@ -12,5 +12,5 @@ const { params } = useData()
 console.log('params',params)
 
 </script>
-
-<Iframe :params="params"/>
+{{params}}
+<!-- <Iframe :params="params"/> -->
