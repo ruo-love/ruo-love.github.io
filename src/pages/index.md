@@ -1,11 +1,10 @@
 ---
-
 layout: home
 
 hero:
   name: "Zero"
-  text: ""
-  tagline: Love and knowledge endure throughout the universe.
+  text: "Hello, Welcome to my blog!"
+  tagline: "'Hello World' is where the programmer's dream begins, 'Ctrl + C, Ctrl + V' is the dream transmission!"
   actions:
     - theme: brand
       text: Github
@@ -21,7 +20,7 @@ features:
   - title: 博客文章
     details: 分享一些技术博客、工作学习遇到的各种“坑”
     link: /articles/
-  - title: 短短一生
-    details: 享受生命中的各种奇遇，感悟生活中的点点滴滴
+  - title: 简历
+    details: 方便我们彼此更好的了解对方
     link: /mine/
 ---
