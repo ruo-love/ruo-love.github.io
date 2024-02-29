@@ -1,22 +1,22 @@
 module.exports = [
   {
     text: "Javascript",
-    items: [
-      { text: "javaScript面试题库", link: "/articles/javascript/interview_question" },
-      { text: "算法", link: "/articles/arithmetic/" },
-    ],
+    items: [],
   },
   {
     text: "Vue",
-    items: [{ text: "Vue面试题库", link: "/articles/vue/interview_question" }],
+    items: [],
   },
   {
     text: "React",
-    items: [{ text: "React面试题库", link: "/articles/react/" }],
+    items: [],
   },
   {
     text: "小程序",
-    items: [{ text: "机器人自动部署", link: "/articles/miniprocedure/" },{ text: "分包", link: "/articles/" }],
+    items: [
+      { text: "机器人自动部署", link: "/articles/miniprocedure/" },
+      { text: "分包", link: "/articles/" },
+    ],
   },
   {
     text: "前端工程化",

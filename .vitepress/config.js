@@ -1,6 +1,7 @@
 const sidebar_works = require("./config/sidebar/works");
 const sidebar_articles = require("./config/sidebar/articles");
-const sidebar_webpack= require("./config/sidebar/webpack");
+const sidebar_webpack = require("./config/sidebar/webpack");
+const sidebar_eat = require("./config/sidebar/eat");
 const nav_config = require("./config/nav");
 module.exports = {
   lang: "zh",
@@ -30,6 +31,7 @@ module.exports = {
       "/articles/": sidebar_articles,
       "/works/": sidebar_works,
       "/articles/project/": sidebar_webpack,
+      "/eat/": sidebar_eat,
     },
   },
   srcDir: "./src/pages/",
