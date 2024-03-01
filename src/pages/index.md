@@ -15,7 +15,7 @@ hero:
 
 features:
   - title: 作品集
-    details: 独立开发的一些项目或工具
+    details: 独立开发的一些项目或工具,别嫌弃
     link: /works/
   - title: 博客文章
     details: 分享一些技术博客、工作学习遇到的各种“坑”
