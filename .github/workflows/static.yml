@@ -36,17 +36,26 @@ jobs:
         with:
           path: |
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4 # Use the latest version of actions/setup-node
-        with:
-          node-version: "20" # Specify the Node.js version you need
-      - name: Install Dependencies
+            ${{ runner.os }}-yarn-
+      - name: Use Taobao npm registry
+        run: npm config set registry https://registry.npm.taobao.org
+      - name: Install Node.js dependencies
         run: npm install
+      - name: Setup Node.js with Yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: "14"
+          registry-url: https://registry.npm.taobao.org
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Install Yarn dependencies
+        run: yarn install
       - name: Build
-        run: npm run build
+        run: yarn run build
+      - name: Restore original npm registry
+        run: npm config set registry https://registry.npmjs.org
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
