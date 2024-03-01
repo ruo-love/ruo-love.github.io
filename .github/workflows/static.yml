@@ -43,15 +43,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: https://registry.npm.taobao.org
-      - name: Install Yarn
-        run: npm install -g yarn
       - name: Install Yarn dependencies
-        run: yarn install
+        run: npm install
       - name: Build
-        run: yarn build
-      - name: Restore original npm registry
-        run: npm config set registry https://registry.npmjs.org
+        run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
