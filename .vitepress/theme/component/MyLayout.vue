@@ -8,7 +8,7 @@ const { Layout } = DefaultTheme;
   <Layout>
     <Content />
     <template #home-hero-image
-      ><img src="../images/banner.png" />Hello, Welcome to my blog!</template
+      ><img src="../images/banner.png" /></template
     >
   </Layout>
 </template>
