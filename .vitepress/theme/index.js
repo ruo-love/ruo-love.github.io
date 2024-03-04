@@ -1,10 +1,9 @@
-import DefaultTheme from 'vitepress/theme'
-import './main.css'
-import Team from './component/Team.vue'
+import DefaultTheme from "vitepress/theme";
+import "./main.css";
+import MyLayout from "./component/MyLayout.vue";
 
 export default {
-  ...DefaultTheme,
-  // override the Layout with a wrapper component that
-  // injects the slots
-  Layout: Team
-}
+  extends: DefaultTheme,
+  // 使用注入插槽的包装组件覆盖 Layout
+  Layout: MyLayout,
+};

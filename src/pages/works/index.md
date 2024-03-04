@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  <script setup>
 import githubCotribution from '../components/githubCotribution/index.vue';
 import { VPTeamMembers } from 'vitepress/theme'
