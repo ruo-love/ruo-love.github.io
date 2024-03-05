@@ -5,8 +5,8 @@ const sidebar_eat = require("./config/sidebar/eat");
 const nav_config = require("./config/nav");
 module.exports = {
   lang: "zh",
-
   title: "Zero",
+  head: [["link", { rel: "icon", href: "/logo.ico" }]],
   themeConfig: {
     logo: "/avatar.png",
     lastUpdated: true,
