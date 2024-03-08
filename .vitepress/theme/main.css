@@ -1,8 +1,10 @@
+@import url(./animation.css);
+
 :root {
     --vp-home-hero-name-color: #ec9b62;
     --vp-button-brand-bg: #060d1f;
     --vp-button-alt-bg: #ec9b62;
-    --vp-c-brand-1: #392f3c;
+    --vp-c-brand-1: #ec9b62;
     --vp-c-indigo-2: #95989c;
     --vp-button-alt-text: #fff;
     /* 状态颜色 */
@@ -23,10 +25,52 @@
     --vp-badge-danger-bg: #ff102f;
 }
 
+body {
+    transition: background-color 15s ease;
+}
+
 .active {
     font-size: 20px !important;
 }
 
 pre {
     overflow-x: scroll !important;
+}
+
+.animation-opacity {
+    transition: opacity 0.8s;
+}
+
+
+.light-banner,
+.dark-banner {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.light-banner-enter-active,
+.light-banner-leave-active {
+    transition: all 0.7s ease;
+    z-index: 10;
+}
+
+
+.light-banner-leave-to,
+.light-banner-enter-from {
+    opacity: 0;
+    z-index: -10;
+}
+
+
+.dark-banner-enter-active,
+.dark-banner-leave-active {
+    transition: all 1s ease;
+    z-index: 10;
+}
+
+.dark-banner-enter-from,
+.dark-banner-leave-to {
+    opacity: 0;
+    z-index: -10;
 }
