@@ -12,26 +12,15 @@ console.log(isDark);
   <Layout>
     <Content />
     <template #home-hero-info>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          font-weight: 600;
-          min-height: 200px;
-        "
-      >
+      <div class="title-wrap">
         <h4
           :class="{ 'text-pop-up-top': !isDark }"
-          style="
-            margin-bottom: 40px;
-            font-size: 44px;
-            color: var(--vp-button-alt-bg);
-          "
+          class="title mb"
+          style="color: var(--vp-button-alt-bg)"
         >
           Zero
         </h4>
-        <h4 style="font-size: 44px" :class="{ 'text-pop-up-top': !isDark }">
+        <h4 class="title" :class="{ 'text-pop-up-top': !isDark }">
           Hello, Welcome to my blog!
         </h4>
       </div>

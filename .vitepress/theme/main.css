@@ -74,3 +74,40 @@ pre {
     opacity: 0;
     z-index: -10;
 }
+
+.title-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    min-height: 200px;
+
+
+}
+
+.title-wrap .title {
+    font-size: 44px;
+}
+
+.mb {
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 960px) {
+    .title-wrap {
+        justify-content: end;
+        min-height: 100px;
+    }
+
+    .title-wrap .title {
+        font-size: 18px;
+    }
+
+    .mb {
+        margin-bottom: 0px;
+    }
+
+    .text-pop-up-top {
+        animation: unset;
+    }
+}
