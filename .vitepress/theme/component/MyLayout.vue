@@ -1,11 +1,17 @@
 <!--.vitepress/theme/MyLayout.vue-->
 <script setup>
 import DefaultTheme from "vitepress/theme";
+import { ref, onMounted } from "vue";
 import { useData } from "vitepress";
-import Dark from "/dark.svg";
+import useThreeModel from "./useThreeModel";
 const { isDark } = useData();
 const { Layout } = DefaultTheme;
-console.log(isDark);
+const sceneRef = ref(null);
+const { startRenderThreeD } = useThreeModel();
+console.log(startRenderThreeD);
+onMounted(() => {
+  startRenderThreeD(sceneRef, isDark);
+});
 </script>
 
 <template>
@@ -30,7 +36,8 @@ console.log(isDark);
         class="fade-in-top"
         style="position: relative; width: 100%; height: 100%"
       >
-        <transition name="light-banner">
+        <div ref="sceneRef" style="width: 100%; height: 100%"></div>
+        <!-- <transition name="light-banner">
           <svg
             class="light-banner"
             v-show="!isDark"
@@ -639,7 +646,7 @@ console.log(isDark);
             />
             <circle cx="606.5" cy="114.5" r="11" fill="#000000" />
           </svg>
-        </transition>
+        </transition> -->
       </div>
     </template>
   </Layout>
