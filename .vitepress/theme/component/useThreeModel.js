@@ -171,14 +171,14 @@ function useThreeModel() {
     initAmbientLight();
     //添加平行光;
     spotLight = initSpotLight();
-    floorMesh = initFloor(isDark);
+    // floorMesh = initFloor(isDark);
     // 添加模型
     initModel();
     // 渲染循环
     const animate = () => {
       controls.update(); // 更新控制器
       renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xffffff, 1);
-      floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
+      // floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };

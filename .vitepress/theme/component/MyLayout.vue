@@ -1,17 +1,11 @@
 <!--.vitepress/theme/MyLayout.vue-->
 <script setup>
 import DefaultTheme from "vitepress/theme";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useData } from "vitepress";
-import useThreeModel from "./useThreeModel";
 const { isDark } = useData();
 const { Layout } = DefaultTheme;
 const sceneRef = ref(null);
-const { startRenderThreeD } = useThreeModel();
-console.log(startRenderThreeD);
-onMounted(() => {
-  startRenderThreeD(sceneRef, isDark);
-});
 </script>
 
 <template>
@@ -20,13 +14,13 @@ onMounted(() => {
     <template #home-hero-info>
       <div class="title-wrap">
         <h4
-          :class="{ 'text-pop-up-top': !isDark }"
+          :class="{ '': !isDark }"
           class="title mb"
           style="color: var(--vp-button-alt-bg)"
         >
           Zero
         </h4>
-        <h4 class="title" :class="{ 'text-pop-up-top': !isDark }">
+        <h4 class="title" :class="{ '': !isDark }">
           Hello, Welcome to my blog!
         </h4>
       </div>
@@ -36,7 +30,11 @@ onMounted(() => {
         class="fade-in-top"
         style="position: relative; width: 100%; height: 100%"
       >
-        <div ref="sceneRef" style="width: 100%; height: 100%"></div>
+        <div
+          id="sceneRef"
+          ref="sceneRef"
+          style="width: 100%; height: 100%"
+        ></div>
         <!-- <transition name="light-banner">
           <svg
             class="light-banner"

@@ -24,3 +24,16 @@ features:
     details: 瞅瞅我究竟是啥货？
     link: /mine/
 ---
+
+<script setup>
+import { ref, onMounted } from "vue";
+import useThreeModel from "./useThreeModel.js";
+import { useData } from "vitepress";
+const { isDark } = useData();
+const { startRenderThreeD } = useThreeModel();
+onMounted(()=>{
+  const sceneRef=document.getElementById('sceneRef')
+  startRenderThreeD(sceneRef, isDark);
+})
+
+</script>
