@@ -12,6 +12,9 @@ function useThreeModel() {
   let controls = null;
   let spotLight = null;
   let floorMesh = null;
+  let mixer = null;
+  let action = null;
+  const clock = new THREE.Clock();
   function initScene() {
     // 创建场景
     const _scene = new THREE.Scene();
@@ -38,6 +41,10 @@ function useThreeModel() {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.shadowMap.enabled = true;
     renderer.setSize(sceneRef.clientWidth, sceneRef.clientHeight);
+    while (sceneRef.firstChild) {
+      sceneRef.removeChild(sceneRef.firstChild);
+    }
+    sceneRef.innerHTML = "";
     sceneRef.appendChild(renderer.domElement);
     return renderer;
   }
@@ -109,39 +116,14 @@ function useThreeModel() {
     gltfLoader.load(
       "/jump-transformed.glb",
       (gltf) => {
-        /* gltf.scene.traverse((child) => {
-          if (child.isMesh) {
-            // 如果是 Mesh 对象，设置新的材质
-            const newMaterial = new THREE.MeshPhongMaterial({
-              color: child.material.color,
-            });
-            child.material = newMaterial;
-          }
-        });*/
-
         // 获取模型
         const model = gltf.scene;
         const animations = gltf.animations;
         if (animations && animations.length) {
-          const mixer = new THREE.AnimationMixer(model);
-          const action = mixer.clipAction(animations[0]); // 假设模型只有一个动画
-
+          mixer = new THREE.AnimationMixer(model);
+          action = mixer.clipAction(animations[0]); // 假设模型只有一个动画
           // 设置动画持续时间为10秒
-          action.setDuration(10).play();
-
-          // 在渲染循环中更新动画
-          const clock = new THREE.Clock();
-          const animate = () => {
-            requestAnimationFrame(animate);
-
-            const delta = clock.getDelta();
-            mixer.update(delta);
-
-            controls.update();
-            renderer.render(scene, camera);
-          };
-
-          animate();
+          action.setDuration(5).play();
         }
         model.castShadow = true;
         console.log(model);
@@ -178,6 +160,8 @@ function useThreeModel() {
     const animate = () => {
       controls.update(); // 更新控制器
       renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xffffff, 1);
+      const delta = clock.getDelta();
+      mixer?.update(delta);
       // floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
