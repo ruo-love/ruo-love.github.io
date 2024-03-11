@@ -33,7 +33,15 @@ const sceneRef = ref(null);
         <div
           id="sceneRef"
           ref="sceneRef"
-          style="width: 100%; height: 100%;cursor: pointer;"
+          style="
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+          "
         ></div>
         <!-- <transition name="light-banner">
           <svg
