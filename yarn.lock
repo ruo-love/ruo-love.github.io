@@ -586,6 +586,11 @@ three@^0.162.0:
   resolved "https://repos.saybot.net/repository/alo7npm/three/-/three-0.162.0.tgz#b15a511f1498e0c42d4d00bbb411c7527b06097e"
   integrity sha512-xfCYj4RnlozReCmUd+XQzj6/5OjDNHBy5nT6rVwrOKGENAvpXe2z1jL+DZYaMu4/9pNsjH/4Os/VvS9IrH7IOQ==
 
+tween.js@^16.6.0:
+  version "16.6.0"
+  resolved "https://repos.saybot.net/repository/alo7npm/tween.js/-/tween.js-16.6.0.tgz#739104c9336cc4f11ee53f9ce7cede51e6723624"
+  integrity sha512-IIhm0VsiBxNJO+WsXUvjcq+u3sKfOwSu67Yh9T5xSpXb2eHHi9+uZDDGBc7uMXjfud0bYiLkYCEb7JXIGXi5KA==
+
 vite@^4.4.9:
   version "4.5.2"
   resolved "https://repos.saybot.net/repository/alo7npm/vite/-/vite-4.5.2.tgz#d6ea8610e099851dad8c7371599969e0f8b97e82"

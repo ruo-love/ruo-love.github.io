@@ -413,6 +413,7 @@ import {
   _SRGBAFormat,
   createCanvasElement
 } from "./chunk-Q7AZB2X2.js";
+import "./chunk-76J2PTFD.js";
 export {
   ACESFilmicToneMapping,
   AddEquation,

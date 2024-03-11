@@ -7,6 +7,7 @@ import {
   Loader,
   SRGBColorSpace
 } from "./chunk-Q7AZB2X2.js";
+import "./chunk-76J2PTFD.js";
 
 // node_modules/three/examples/jsm/loaders/DRACOLoader.js
 var _taskCache = /* @__PURE__ */ new WeakMap();

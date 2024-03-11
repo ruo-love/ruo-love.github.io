@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-
+import TWEEN from "tween.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
@@ -12,10 +12,13 @@ function useThreeModel() {
   let controls = null;
   let spotLight = null;
   let floorMesh = null;
+  let mixer = null;
+  let action = ref(null);
+  const clock = new THREE.Clock();
   function initScene() {
     // 创建场景
     const _scene = new THREE.Scene();
-    // _scene.fog = new THREE.FogExp2(0x1b1b1f, 0.1); // 设置场景雾效
+    _scene.fog = new THREE.FogExp2(0xffffff, 0.05); // 设置场景雾效
     // 启用场景的阴影
     _scene.receiveShadow = true;
     return _scene;
@@ -24,21 +27,25 @@ function useThreeModel() {
     // 创建相机
     const camera = new THREE.PerspectiveCamera(
       75,
-      sceneRef.value.clientWidth / sceneRef.value.clientHeight,
+      sceneRef.clientWidth / sceneRef.clientHeight,
       0.1,
       1000
     );
 
-    camera.position.z = 6;
-    camera.position.y = 2;
+    camera.position.z = 20;
+    camera.position.y = 4;
     return camera;
   }
   function initRenderer(sceneRef) {
     // 创建渲染器
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.shadowMap.enabled = true;
-    renderer.setSize(sceneRef.value.clientWidth, sceneRef.value.clientHeight);
-    sceneRef.value.appendChild(renderer.domElement);
+    renderer.setSize(sceneRef.clientWidth, sceneRef.clientHeight);
+    while (sceneRef.firstChild) {
+      sceneRef.removeChild(sceneRef.firstChild);
+    }
+    sceneRef.innerHTML = "";
+    sceneRef.appendChild(renderer.domElement);
     return renderer;
   }
   function initOrbitControls(camera, renderer) {
@@ -46,9 +53,15 @@ function useThreeModel() {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.25;
-    controls.enableZoom = false;
+    // controls.enableZoom = false;
     controls.screenSpacePanning = false;
     controls.maxPolarAngle = Math.PI / 2;
+    controls.minDistance = 6.5;
+    controls.maxDistance = 20;
+    // controls.minAzimuthAngle = -Math.PI / 10;
+    // controls.maxAzimuthAngle = Math.PI / 10;
+    controls.minPolarAngle = Math.PI / 2.25;
+    controls.maxPolarAngle = Math.PI / 1.98;
     // 启用阻尼效果
     controls.enableDamping = true; // 启用阻尼效果
     controls.dampingFactor = 0.5; // 阻尼系数，调整阻尼效果的强度
@@ -78,7 +91,7 @@ function useThreeModel() {
   }
   function initFloor(isDark) {
     // 创建地板的几何体
-    const floorGeometry = new THREE.BoxGeometry(10, 0.1, 16); // 设置地板的大小
+    const floorGeometry = new THREE.CircleGeometry(10, 20); // 设置地板的大小
     // 创建地板的材质
     const floorMaterial = new THREE.MeshLambertMaterial({
       color: 0xffffff,
@@ -86,6 +99,7 @@ function useThreeModel() {
 
     // 创建地板的网格对象
     floorMesh = new THREE.Mesh(floorGeometry, floorMaterial);
+    floorMesh.rotation.x = -Math.PI / 2; // 将圆形水平放置
 
     // 设置地板的位置
     floorMesh.position.set(0, -0.1, 0); // 根据需要调整位置
@@ -97,7 +111,6 @@ function useThreeModel() {
     scene.add(floorMesh);
     return floorMesh;
   }
-
   function initModel() {
     // 创建 GLTF 加载器
     const gltfLoader = new GLTFLoader();
@@ -109,42 +122,32 @@ function useThreeModel() {
     gltfLoader.load(
       "/jump-transformed.glb",
       (gltf) => {
-        /* gltf.scene.traverse((child) => {
-          if (child.isMesh) {
-            // 如果是 Mesh 对象，设置新的材质
-            const newMaterial = new THREE.MeshPhongMaterial({
-              color: child.material.color,
-            });
-            child.material = newMaterial;
-          }
-        });*/
-
         // 获取模型
         const model = gltf.scene;
+        model.traverse((child) => {
+          if (child.isMesh) {
+            // 保留原始颜色
+            const originalColor = child.material.color.clone();
+
+            // 创建新的材质，可以根据需要选择不同的材质类型
+            // const newMaterial = new THREE.MeshPhysicalMaterial({
+            //   color: originalColor,
+            //   opacity: 0.8,
+            //   transparent: true,
+            //   roughness: 0.02,
+            // });
+
+            // 应用新材质
+            // child.material = newMaterial;
+            child.castShadow = true;
+          }
+        });
         const animations = gltf.animations;
         if (animations && animations.length) {
-          const mixer = new THREE.AnimationMixer(model);
-          const action = mixer.clipAction(animations[0]); // 假设模型只有一个动画
-
-          // 设置动画持续时间为10秒
-          action.setDuration(10).play();
-
-          // 在渲染循环中更新动画
-          const clock = new THREE.Clock();
-          const animate = () => {
-            requestAnimationFrame(animate);
-
-            const delta = clock.getDelta();
-            mixer.update(delta);
-
-            controls.update();
-            renderer.render(scene, camera);
-          };
-
-          animate();
+          mixer = new THREE.AnimationMixer(model);
+          action.value = mixer.clipAction(animations[0]); // 假设模型只有一个动画
         }
         model.castShadow = true;
-        console.log(model);
         model.scale.set(3, 3, 3);
         // 添加模型到场景
         scene.add(model);
@@ -157,6 +160,12 @@ function useThreeModel() {
         console.error("Error loading glTF model", error);
       }
     );
+  }
+  function playAnimation() {
+    action.value.clampWhenFinished = true;
+    action.value.loop = THREE.LoopOnce; // 设置为只播放一次
+    action.value.reset();
+    action.value.setDuration(3).play();
   }
   function startRenderThreeD(sceneRef, isDark) {
     // 创建场景
@@ -171,21 +180,46 @@ function useThreeModel() {
     initAmbientLight();
     //添加平行光;
     spotLight = initSpotLight();
-    // floorMesh = initFloor(isDark);
+    floorMesh = initFloor(isDark);
     // 添加模型
     initModel();
     // 渲染循环
     const animate = () => {
       controls.update(); // 更新控制器
       renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xffffff, 1);
+      const delta = clock.getDelta();
+      mixer?.update(delta);
+      TWEEN.update(); // 更新 Tween.js，使动画生效
+
       // floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
     animate();
-    return { scene, camera, renderer, controls };
+    // 双击播放动画 事件监听
+    sceneRef.addEventListener("dblclick", () => {
+      playAnimation();
+    });
+    return { scene, camera, renderer, controls, action };
   }
-  return { startRenderThreeD };
+
+  watch(
+    () => action.value,
+    (v) => {
+      v && playAnimation();
+      const targetPosition = { x: 0, y: 4, z: 7 };
+      const duration = 2000; // 动画持续时间
+      const tween = new TWEEN.Tween(camera.position)
+        .to(targetPosition, duration)
+        .easing(TWEEN.Easing.Quadratic.InOut) // 使用 Quadratic 缓动函数
+        .onUpdate(() => {
+          // 在每一帧更新时执行的回调函数
+          // 这里可以进行一些自定义操作
+        })
+        .start();
+    }
+  );
+  return { startRenderThreeD, playAnimation };
 }
 
 export default useThreeModel;

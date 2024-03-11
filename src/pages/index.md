@@ -26,14 +26,15 @@ features:
 ---
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import useThreeModel from "./useThreeModel.js";
 import { useData } from "vitepress";
 const { isDark } = useData();
 const { startRenderThreeD } = useThreeModel();
 onMounted(()=>{
   const sceneRef=document.getElementById('sceneRef')
-  startRenderThreeD(sceneRef, isDark);
+  const { action,playAnimation }=startRenderThreeD(sceneRef, isDark);
+
 })
 
 </script>
