@@ -4,7 +4,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import TWEEN from "tween.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
+import { FontLoader } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 function useThreeModel() {
   let scene = null;
   let camera = null;
@@ -60,8 +62,8 @@ function useThreeModel() {
     controls.maxDistance = 20;
     // controls.minAzimuthAngle = -Math.PI / 10;
     // controls.maxAzimuthAngle = Math.PI / 10;
-    controls.minPolarAngle = Math.PI / 2.25;
-    controls.maxPolarAngle = Math.PI / 1.98;
+    // controls.minPolarAngle = Math.PI / 2.25;
+    // controls.maxPolarAngle = Math.PI / 1.98;
     // 启用阻尼效果
     controls.enableDamping = true; // 启用阻尼效果
     controls.dampingFactor = 0.5; // 阻尼系数，调整阻尼效果的强度
@@ -106,10 +108,21 @@ function useThreeModel() {
     // 开启地板的阴影接收
     floorMesh.receiveShadow = true;
     floorMesh.castShadow = true;
-
+    const reflector = new Reflector(floorGeometry, {
+      textureWidth: sceneRef.clientWidth * window.devicePixelRatio,
+      textureHeight: sceneRef.clientHeight * window.devicePixelRatio,
+      color: 0xffffff,
+      recursion: 1,
+    });
+    reflector.rotation.x = -Math.PI / 2;
+    scene.add(reflector);
     // 将地板添加到场景中
     scene.add(floorMesh);
+
     return floorMesh;
+  }
+  function initReflector() {
+    // 创建镜像地板
   }
   function initModel() {
     // 创建 GLTF 加载器
@@ -167,6 +180,34 @@ function useThreeModel() {
     action.value.reset();
     action.value.setDuration(3).play();
   }
+  function addText() {
+    const loader = new FontLoader();
+    loader.load(
+      "/helvetiker_regular.typeface.json",
+      function (font) {
+        const geometry = new TextGeometry("zero", {
+          font: font,
+          size: 1,
+          height: 0.2,
+          curveSegments: 12,
+          bevelEnabled: false,
+        });
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = -4;
+        mesh.position.y = 5.5;
+        mesh.position.z = -1;
+        mesh.rotation.x = -Math.PI /12;
+        mesh.castShadow = true;
+        scene.add(mesh);
+      },
+      // 加载失败的回调函数
+      function (xhr) {
+        console.error("Font loading failed:", xhr);
+      }
+    );
+  }
+
   function startRenderThreeD(sceneRef, isDark) {
     // 创建场景
     scene = initScene();
@@ -181,6 +222,8 @@ function useThreeModel() {
     //添加平行光;
     spotLight = initSpotLight();
     floorMesh = initFloor(isDark);
+    initReflector();
+    // addText();
     // 添加模型
     initModel();
     // 渲染循环
@@ -207,7 +250,7 @@ function useThreeModel() {
     () => action.value,
     (v) => {
       v && playAnimation();
-      const targetPosition = { x: 0, y: 4, z: 7 };
+      const targetPosition = { x: 0, y: 4, z: 8 };
       const duration = 2000; // 动画持续时间
       const tween = new TWEEN.Tween(camera.position)
         .to(targetPosition, duration)
