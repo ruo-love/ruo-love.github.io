@@ -18,11 +18,17 @@ jobs:
         run: |
           yarn install
           yarn run build
+      - name: Print directory contents
+        run: |
+          ls -l ./
 
   deploy-aliyun:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Print directory contents
+        run: |
+          ls -l ./
       - name: deploy
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
