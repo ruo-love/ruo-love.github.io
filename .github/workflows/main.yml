@@ -38,4 +38,4 @@ jobs:
           # 服务器默认用户名为root
           REMOTE_USER: "root"
           # 目标目录
-          TARGET: "/root/project/webs/vitepress-blog"
+          TARGET: "/root/project/webs/vitepress-zero-blog/dist"
