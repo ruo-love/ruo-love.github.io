@@ -197,7 +197,7 @@ function useThreeModel() {
         mesh.position.x = -4;
         mesh.position.y = 5.5;
         mesh.position.z = -1;
-        mesh.rotation.x = -Math.PI /12;
+        mesh.rotation.x = -Math.PI / 12;
         mesh.castShadow = true;
         scene.add(mesh);
       },
