@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: get code
@@ -21,6 +21,11 @@ jobs:
       - name: Print directory contents
         run: |
           ls -l ./
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@master
       - name: Print directory contents
         run: |
           ls -l ./
