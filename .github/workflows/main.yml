@@ -25,6 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build
     steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./dist
+
       - name: Print directory contents
         run: |
           ls -l ./
