@@ -25,8 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build
     steps:
-      - name: get code
-        uses: actions/checkout@master
       - name: Print directory contents
         run: |
           ls -l ./
