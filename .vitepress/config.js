@@ -37,7 +37,7 @@ module.exports = {
     },
   },
   srcDir: "./src/pages/",
-  assetsDir: "./src/static/",
+  // assetsDir: "./src/static/",
   markdown: {
     theme: "vitesse-light",
     lineNumbers: true,
