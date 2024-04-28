@@ -49,8 +49,8 @@ jobs:
           # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
           SOURCE: "./dist/"
           # 服务器域名/IP
-          REMOTE_HOST: "47.103.194.209"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           # 服务器默认用户名为root
-          REMOTE_USER: "root"
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           # 目标目录
           TARGET: "/root/project/webs/vitepress-zero-blog/dist"
