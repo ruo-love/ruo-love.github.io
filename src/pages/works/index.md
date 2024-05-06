@@ -1,21 +1,9 @@
----
-layout: page
----
 
- <script setup>
-
-import { VPTeamMembers } from 'vitepress/theme'
-
-const members = [
-  {
-    avatar: '/avatar.png',
-    name: 'Zero',
-    title: 'Creator',
-    links: [
-      { icon: 'github', link: 'https://github.com/ruo-love' }
-    ]
-  }
-]
-</script>
-
-<VPTeamMembers size="small" :members="members" />
+| 类型        | 数量 |                               |
+| ----------- | ---- | ----------------------------- |
+| npm package | 16   | https://www.npmjs.com/~zrcode |
+| python爬虫  | 2    |                               |
+| 自动化      | 1    |                               |
+| app         | 3    |                               |
+| web         | 3    |                               |
+| 小程序      |      |                               |

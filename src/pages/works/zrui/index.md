@@ -11,7 +11,7 @@ Vue3、Svg、Scss、Ts、Vite、tailwindcss 等
 内含 27 个多功能组件，包括常用的 input、button、Progress、Drawer、Message 等，整个组件库色彩鲜明，拓
 展性、复用性强，能极大的提高开发体验和效率，能够满足绝大多数的功能场景。
 
-### 地址：
+#### 地址：http://47.103.194.209:10003/
 
 #### Github: https://github.com/ruo-love/zrui
 #### Npm: https://www.npmjs.com/package/@zhaoqiancheng/zrui

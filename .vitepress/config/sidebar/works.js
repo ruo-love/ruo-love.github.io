@@ -1,5 +1,13 @@
 module.exports = [
   {
+    text: "python 服务中央调度器",
+    link: "/works/centerController/",
+  },
+  {
+    text: "use-shell-ai",
+    link: "/works/use-shell-ai/",
+  },
+  {
     text: "crisp-log",
     link: "/works/crispLog/",
   },
@@ -23,6 +31,14 @@ module.exports = [
   {
     text: "腾讯云V3签名自动生成库",
     link: "/works/tencentcloudv3/",
+  },
+  {
+    text: "python 专栏",
+    items: [],
+  },
+  {
+    text: "three.js 专栏",
+    items: [],
   },
   {
     text: "大学期间作品",
