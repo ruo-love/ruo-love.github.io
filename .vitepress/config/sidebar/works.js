@@ -34,7 +34,16 @@ module.exports = [
   },
   {
     text: "python 专栏",
-    items: [],
+    items: [
+      {
+        text: "贝壳二手房数据爬虫",
+        link: "/works/beikeSpider/",
+      },
+      {
+        text: "上海保障房数据爬虫",
+        link: "/works/security-house-spider/",
+      },
+    ],
   },
   {
     text: "three.js 专栏",

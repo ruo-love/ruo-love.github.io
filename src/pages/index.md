@@ -15,13 +15,13 @@ hero:
 
 features:
   - title: 作品集
-    details: 独立开发的一些项目或工具,别嫌弃
+    details: 独立开发的一些有趣的项目和工具
     link: /works/
   - title: 博客文章
     details: 维护了几个CSDN专栏，分享一些技术博客、工作学习遇到的各种“坑”
     link: /articles/
   - title: 简历
-    details: 瞅瞅我究竟是啥货？
+    details: 多看我一眼我都会害羞
     link: /mine/
 ---
 
