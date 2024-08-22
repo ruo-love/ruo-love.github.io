@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: "python 服务中央调度器",
-    link: "/works/centerController/",
+    link: "/works/center-controller/",
   },
   {
     text: "use-shell-ai",
@@ -9,11 +9,11 @@ module.exports = [
   },
   {
     text: "crisp-log",
-    link: "/works/crispLog/",
+    link: "/works/crisp-log/",
   },
   {
     text: "zero-keeper",
-    link: "/works/zeroKeeper/",
+    link: "/works/zero-keeper/",
   },
   {
     text: "storage",
@@ -21,23 +21,23 @@ module.exports = [
   },
   {
     text: "vite-zero-env-plugin",
-    link: "/works/viteZeroEnvPlugin/",
+    link: "/works/vite-zero-env-plugin/",
   },
   {
     text: "vue3 Hooks",
-    link: "/works/vuehooks/",
+    link: "/works/vue-hooks/",
   },
 
   {
     text: "腾讯云V3签名自动生成库",
-    link: "/works/tencentcloudv3/",
+    link: "/works/tencent-cloud-v3/",
   },
   {
     text: "python 专栏",
     items: [
       {
         text: "贝壳二手房数据爬虫",
-        link: "/works/beikeSpider/",
+        link: "/works/beike-spider/",
       },
       {
         text: "上海保障房数据爬虫",
@@ -54,38 +54,38 @@ module.exports = [
     items: [
       {
         text: "js工具函数库",
-        link: "/works/jstool/",
+        link: "/works/js-tool/",
       },
       {
         text: "Lazy Form 配置型表单",
-        link: "/works/lazyform/",
+        link: "/works/lazy-form/",
       },
       {
         text: "外卖后台管理系统",
         // link: "/works/iframePreview/foodAdmin-pc.html",
-        link: "/works/foodAdmin/",
+        link: "/works/food-admin/",
       },
       {
         text: "外卖h5移动端",
         // link: "/works/iframePreview/foodAdminMobile-mobile.html",
-        link: "/works/foodAdminMobile/",
+        link: "/works/food-admin-mobile/",
       },
       {
         text: "Zrui vue3 组件库",
         // link: "/works/iframePreview/zrui-pc.html",
-        link: "/works/zrui/",
+        link: "/works/zr-ui/",
       },
       {
         text: "Flutter桌面图床",
-        link: "/works/flutterWindowsPhotoAlbums/",
+        link: "/works/flutter-windows-photo-albums/",
       },
       {
         text: "uni音乐app",
-        link: "/works/uniMusic/",
+        link: "/works/uni-music/",
       },
       {
         text: "RuoMU",
-        link: "/works/flutterMusic/",
+        link: "/works/flutter-music/",
       },
     ],
   },
