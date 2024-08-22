@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { ref, watch } from "vue";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import TWEEN from "tween.js";
+import TWEEN from "@tweenjs/tween.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
