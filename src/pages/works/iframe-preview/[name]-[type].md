@@ -3,7 +3,7 @@ layout: home
 ---
 
 <script setup>
-import Iframe from '../../components/Iframe/index.vue';
+// import Iframe from '../../components/Iframe/index.vue';
 import { useData } from 'vitepress'
 
 // params is a Vue ref
