@@ -13,16 +13,10 @@ const sceneRef = ref(null);
     <Content />
     <template #home-hero-info>
       <div class="title-wrap">
-        <h4
-          :class="{ '': !isDark }"
-          class="title mb"
-          style="color: var(--vp-button-alt-bg)"
-        >
-          Zero
-        </h4>
-        <h4 class="title" :class="{ '': !isDark }">
-          <!-- Hello, Welcome to my blog! -->
-        </h4>
+        <h4 class="title mb" style="color: var(--vp-button-alt-bg)">ZERO</h4>
+        <h5 class="title" >
+          HOLLO, WELCOME TO MY BLOG!
+        </h5>
       </div>
     </template>
     <template #home-hero-image>

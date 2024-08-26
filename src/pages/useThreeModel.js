@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { ref, watch } from "vue";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import TWEEN from "tween.js";
+import TWEEN, { Tween } from "@tweenjs/tween.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
@@ -16,6 +16,7 @@ function useThreeModel() {
   let floorMesh = null;
   let mixer = null;
   let action = ref(null);
+  let hasPlayedOnce = false;
   const clock = new THREE.Clock();
   function initScene() {
     // 创建场景
@@ -125,54 +126,45 @@ function useThreeModel() {
     // 创建镜像地板
   }
   function initModel() {
-    // 创建 GLTF 加载器
-    const gltfLoader = new GLTFLoader();
-    // 实例化加较器draco
-    const dracoloader = new DRACOLoader();
-    dracoloader.setDecoderPath("/draco/");
-    gltfLoader.setDRACOLoader(dracoloader);
-    // 加载 glTF 模型
-    gltfLoader.load(
-      "/jump-transformed.glb",
-      (gltf) => {
-        // 获取模型
-        const model = gltf.scene;
-        model.traverse((child) => {
-          if (child.isMesh) {
-            // 保留原始颜色
-            const originalColor = child.material.color.clone();
-
-            // 创建新的材质，可以根据需要选择不同的材质类型
-            // const newMaterial = new THREE.MeshPhysicalMaterial({
-            //   color: originalColor,
-            //   opacity: 0.8,
-            //   transparent: true,
-            //   roughness: 0.02,
-            // });
-
-            // 应用新材质
-            // child.material = newMaterial;
-            child.castShadow = true;
+    return new Promise((resolve, reject) => {
+      const gltfLoader = new GLTFLoader();
+      // 实例化加较器draco
+      const dracoloader = new DRACOLoader();
+      dracoloader.setDecoderPath("/draco/");
+      gltfLoader.setDRACOLoader(dracoloader);
+      // 加载 glTF 模型
+      gltfLoader.load(
+        "/jump-transformed.glb",
+        (gltf) => {
+          // 获取模型
+          const model = gltf.scene;
+          model.traverse((child) => {
+            if (child.isMesh) {
+              child.castShadow = true;
+            }
+          });
+          const animations = gltf.animations;
+          if (animations && animations.length) {
+            mixer = new THREE.AnimationMixer(model);
+            action.value = mixer.clipAction(animations[0]); // 假设模型只有一个动画
           }
-        });
-        const animations = gltf.animations;
-        if (animations && animations.length) {
-          mixer = new THREE.AnimationMixer(model);
-          action.value = mixer.clipAction(animations[0]); // 假设模型只有一个动画
+          model.castShadow = true;
+          model.scale.set(3, 3, 3);
+          // 添加模型到场景
+          scene.add(model);
+          controls.target.set(0, 4, 0); // 设置控制器的焦点
+          camera.lookAt(0, 4, 0); // 设置相机的焦点
+          spotLight.target = model; // 设置平行光的焦点
+          resolve();
+        },
+        undefined,
+        (error) => {
+          reject(error);
+          console.error("Error loading glTF model", error);
         }
-        model.castShadow = true;
-        model.scale.set(3, 3, 3);
-        // 添加模型到场景
-        scene.add(model);
-        controls.target.set(0, 4, 0); // 设置控制器的焦点
-        camera.lookAt(0, 4, 0); // 设置相机的焦点
-        spotLight.target = model; // 设置平行光的焦点
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading glTF model", error);
-      }
-    );
+      );
+    });
+    // 创建 GLTF 加载器
   }
   function playAnimation() {
     action.value.clampWhenFinished = true;
@@ -181,34 +173,66 @@ function useThreeModel() {
     action.value.setDuration(3).play();
   }
   function addText() {
-    const loader = new FontLoader();
-    loader.load(
-      "/helvetiker_regular.typeface.json",
-      function (font) {
-        const geometry = new TextGeometry("zero", {
-          font: font,
-          size: 1,
-          height: 0.2,
-          curveSegments: 12,
-          bevelEnabled: false,
-        });
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = -4;
-        mesh.position.y = 5.5;
-        mesh.position.z = -1;
-        mesh.rotation.x = -Math.PI / 12;
-        mesh.castShadow = true;
-        scene.add(mesh);
-      },
-      // 加载失败的回调函数
-      function (xhr) {
-        console.error("Font loading failed:", xhr);
-      }
-    );
+    return new Promise((resolve, reject) => {
+      const loader = new FontLoader();
+      loader.load(
+        "/helvetiker_regular.typeface.json",
+        function (font) {
+          const geometry = new TextGeometry("HELLO WORLD", {
+            font: font,
+            size: 1.3,
+            weight: "bold",
+            height: 0.55,
+            curveSegments: 12,
+            bevelEnabled: false,
+          });
+          const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.position.x = -6;
+          mesh.position.y = 1;
+          mesh.position.z = -2;
+          mesh.rotation.x = -Math.PI / 13.5;
+          mesh.castShadow = true;
+          scene.add(mesh);
+          resolve(mesh);
+        },
+        // 加载失败的回调函数
+        function (xhr) {
+          console.error("Font loading failed:", xhr);
+        },
+        reject
+      );
+    });
   }
+  function initAnimation(textMesh) {
+    const textTween = new Tween(textMesh.position)
+      .to({ x: -6, y: 1, z: 2 }, 1000)
+      .delay(1000)
+      .onUpdate((v, e) => {
+        // textMesh.material.color.set(0x292d3e, e);
+      })
+      .easing(TWEEN.Easing.Quadratic.InOut);
 
-  function startRenderThreeD(sceneRef, isDark) {
+    const targetPosition = { x: 0, y: 4, z: 8 };
+    const duration = 2000; // 动画持续时间
+    const tween = new TWEEN.Tween(camera.position)
+      .to(targetPosition, duration)
+      .easing(TWEEN.Easing.Quadratic.InOut) // 使用 Quadratic 缓动函数
+      .onUpdate(() => {
+        // 在每一帧更新时执行的回调函数
+        // 这里可以进行一些自定义操作
+      })
+      .onStart(() => {
+        playAnimation();
+      }) // 动画开始时的回调函数
+      .onComplete(() => {
+        textTween.start();
+      }) // 动画结束时的回调函数
+      .start();
+
+    return [tween, textTween];
+  }
+  async function startRenderThreeD(sceneRef, isDark) {
     // 创建场景
     scene = initScene();
     // 创建相机
@@ -223,17 +247,18 @@ function useThreeModel() {
     spotLight = initSpotLight();
     floorMesh = initFloor(isDark);
     initReflector();
-    // addText();
+    const textMesh = await addText();
     // 添加模型
-    initModel();
+    await initModel();
+    const [tween, textTween] = initAnimation(textMesh);
     // 渲染循环
     const animate = () => {
       controls.update(); // 更新控制器
       renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xffffff, 1);
       const delta = clock.getDelta();
       mixer?.update(delta);
-      TWEEN.update(); // 更新 Tween.js，使动画生效
-
+      tween.update(); // 更新 Tween.js，使动画生效
+      textTween.update(); // 更新 Tween.js，使动画生效
       floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
@@ -246,22 +271,6 @@ function useThreeModel() {
     return { scene, camera, renderer, controls, action };
   }
 
-  watch(
-    () => action.value,
-    (v) => {
-      v && playAnimation();
-      const targetPosition = { x: 0, y: 4, z: 8 };
-      const duration = 2000; // 动画持续时间
-      const tween = new TWEEN.Tween(camera.position)
-        .to(targetPosition, duration)
-        .easing(TWEEN.Easing.Quadratic.InOut) // 使用 Quadratic 缓动函数
-        .onUpdate(() => {
-          // 在每一帧更新时执行的回调函数
-          // 这里可以进行一些自定义操作
-        })
-        .start();
-    }
-  );
   return { startRenderThreeD, playAnimation };
 }
 
