@@ -186,7 +186,7 @@ function useThreeModel() {
             curveSegments: 12,
             bevelEnabled: false,
           });
-          const material = new THREE.MeshBasicMaterial({ color: 0xec9b62 });
+          const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
           const mesh = new THREE.Mesh(geometry, material);
           mesh.position.x = -6;
           mesh.position.y = 1;
