@@ -35,7 +35,7 @@ function useThreeModel() {
       1000
     );
 
-    camera.position.z = 20;
+    camera.position.z = 10;
     camera.position.y = 4;
     return camera;
   }
@@ -75,10 +75,10 @@ function useThreeModel() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1); // 第一个参数是光的颜色，第二个参数是光的强度
     scene.add(ambientLight);
   }
-  function initSpotLight(helper = false) {
+  function initSpotLight(helper = true) {
     // 添加平行光
     spotLight = new THREE.SpotLight(0xffffff, 1000);
-    spotLight.position.set(0, 10, 10);
+    spotLight.position.set(-10, 10, -10);
     spotLight.angle = Math.PI / 4;
     spotLight.castShadow = true;
 
@@ -166,6 +166,35 @@ function useThreeModel() {
     });
     // 创建 GLTF 加载器
   }
+  function addAModel() {
+    // add glb model
+    return new Promise((resolve, reject) => {
+      const gltfLoader = new GLTFLoader();
+      // 实例化加较器draco
+      const dracoloader = new DRACOLoader();
+      dracoloader.setDecoderPath("/draco/");
+      gltfLoader.setDRACOLoader(dracoloader);
+      // 加载 glTF 模型
+      gltfLoader.load(
+        "/model-1.glb",
+        (gltf) => {
+          // 获取模型
+          const model = gltf.scene;
+          model.rotation.y = -Math.PI / 2;
+          const subModel = model.getObjectByName("chair");
+          subModel.material = subModel.material.clone();
+          subModel.material.color.set(0xff5f5f); // 设置新的颜色
+          scene.add(model);
+          resolve(model);
+        },
+        undefined,
+        (error) => {
+          reject(error);
+          console.error("Error loading glTF model", error);
+        }
+      );
+    });
+  }
   function playAnimation() {
     action.value.clampWhenFinished = true;
     action.value.loop = THREE.LoopOnce; // 设置为只播放一次
@@ -242,24 +271,27 @@ function useThreeModel() {
     // 创建轨道控制器
     controls = initOrbitControls(camera, renderer);
     // 添加环境光
-    initAmbientLight();
+    // initAmbientLight();
     //添加平行光;
-    spotLight = initSpotLight();
+    // spotLight = initSpotLight();
     floorMesh = initFloor(isDark);
     initReflector();
-    const textMesh = await addText();
+    // const textMesh = await addText();
+    // 加载模型
+
+    await addAModel();
     // 添加模型
-    await initModel();
-    const [tween, textTween] = initAnimation(textMesh);
+    // await initModel();
+    // const [tween, textTween] = initAnimation(textMesh);
     // 渲染循环
     const animate = () => {
       controls.update(); // 更新控制器
-      renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xffffff, 1);
+      renderer.setClearColor(isDark.value ? 0x1b1b1f : 0xff5efe6, 1);
       const delta = clock.getDelta();
       mixer?.update(delta);
-      tween.update(); // 更新 Tween.js，使动画生效
-      textTween.update(); // 更新 Tween.js，使动画生效
-      floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
+      // tween.update(); // 更新 Tween.js，使动画生效
+      // textTween.update(); // 更新 Tween.js，使动画生效
+      floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xff5efe6);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
