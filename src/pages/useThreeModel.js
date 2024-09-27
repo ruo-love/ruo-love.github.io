@@ -186,7 +186,7 @@ function useThreeModel() {
             curveSegments: 12,
             bevelEnabled: false,
           });
-          const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+          const material = new THREE.MeshBasicMaterial({ color: 0x060d1f });
           const mesh = new THREE.Mesh(geometry, material);
           mesh.position.x = -6;
           mesh.position.y = 1;
@@ -206,15 +206,15 @@ function useThreeModel() {
   }
   function initAnimation(textMesh) {
     const textTween = new Tween(textMesh.position)
-      .to({ x: -6, y: 1, z: 2 }, 1000)
+      .to({ x: -6, y: 1, z: 4 }, 1000)
       .delay(1000)
       .onUpdate((v, e) => {
-        // textMesh.material.color.set(0x292d3e, e);
+        // textMesh.material.color.set(0x060d1f, e);
       })
       .easing(TWEEN.Easing.Quadratic.InOut);
 
-    const targetPosition = { x: 0, y: 4, z: 8 };
-    const duration = 2000; // 动画持续时间
+    const targetPosition = { x: 0, y: 4, z: 12 };
+    const duration = 1500; // 动画持续时间
     const tween = new TWEEN.Tween(camera.position)
       .to(targetPosition, duration)
       .easing(TWEEN.Easing.Quadratic.InOut) // 使用 Quadratic 缓动函数
@@ -260,6 +260,7 @@ function useThreeModel() {
       tween.update(); // 更新 Tween.js，使动画生效
       textTween.update(); // 更新 Tween.js，使动画生效
       floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
+      textMesh.material.color.set(isDark.value ? 0xffffff : 0x1b1b1f);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };

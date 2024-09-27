@@ -1,5 +1,13 @@
 module.exports = [
   {
+    text: "auto-i18n-json",
+    link: "/works/auto-i18n-json/",
+  },
+  {
+    text: "auto-i18n-vscode",
+    link: "/works/auto-i18n-vscode/",
+  },
+  {
     text: "python 服务中央调度器",
     link: "/works/center-controller/",
   },
