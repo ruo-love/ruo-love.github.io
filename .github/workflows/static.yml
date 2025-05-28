@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 # ✅ 修复这里
+        uses: actions/checkout@v4 # ✅ 修复这里
       - name: Setup Node.js
         uses: actions/setup-node@v3 # ✅ 建议升级 v3（比 v1 更稳定）
         with:
@@ -44,9 +44,9 @@ jobs:
     needs: Build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -58,4 +58,4 @@ jobs:
           path: dist
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
