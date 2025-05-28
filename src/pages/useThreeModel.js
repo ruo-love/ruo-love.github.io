@@ -172,47 +172,7 @@ function useThreeModel() {
     action.value.reset();
     action.value.setDuration(3).play();
   }
-  function addText() {
-    return new Promise((resolve, reject) => {
-      const loader = new FontLoader();
-      loader.load(
-        "/helvetiker_regular.typeface.json",
-        function (font) {
-          const geometry = new TextGeometry("HELLO WORLD", {
-            font: font,
-            size: 1.3,
-            weight: "bold",
-            height: 0.55,
-            curveSegments: 12,
-            bevelEnabled: false,
-          });
-          const material = new THREE.MeshBasicMaterial({ color: 0x060d1f });
-          const mesh = new THREE.Mesh(geometry, material);
-          mesh.position.x = -6;
-          mesh.position.y = 1;
-          mesh.position.z = -2;
-          mesh.rotation.x = -Math.PI / 13.5;
-          mesh.castShadow = true;
-          scene.add(mesh);
-          resolve(mesh);
-        },
-        // 加载失败的回调函数
-        function (xhr) {
-          console.error("Font loading failed:", xhr);
-        },
-        reject
-      );
-    });
-  }
-  function initAnimation(textMesh) {
-    const textTween = new Tween(textMesh.position)
-      .to({ x: -6, y: 1, z: 4 }, 1000)
-      .delay(1000)
-      .onUpdate((v, e) => {
-        // textMesh.material.color.set(0x060d1f, e);
-      })
-      .easing(TWEEN.Easing.Quadratic.InOut);
-
+  function initAnimation() {
     const targetPosition = { x: 0, y: 4, z: 12 };
     const duration = 1500; // 动画持续时间
     const tween = new TWEEN.Tween(camera.position)
@@ -226,11 +186,10 @@ function useThreeModel() {
         playAnimation();
       }) // 动画开始时的回调函数
       .onComplete(() => {
-        textTween.start();
       }) // 动画结束时的回调函数
       .start();
 
-    return [tween, textTween];
+    return [tween];
   }
   async function startRenderThreeD(sceneRef, isDark) {
     // 创建场景
@@ -247,10 +206,9 @@ function useThreeModel() {
     spotLight = initSpotLight();
     floorMesh = initFloor(isDark);
     initReflector();
-    const textMesh = await addText();
     // 添加模型
     await initModel();
-    const [tween, textTween] = initAnimation(textMesh);
+    const [tween] = initAnimation();
     // 渲染循环
     const animate = () => {
       controls.update(); // 更新控制器
@@ -258,9 +216,7 @@ function useThreeModel() {
       const delta = clock.getDelta();
       mixer?.update(delta);
       tween.update(); // 更新 Tween.js，使动画生效
-      textTween.update(); // 更新 Tween.js，使动画生效
       floorMesh.material.color.set(isDark.value ? 0x1b1b1f : 0xffffff);
-      textMesh.material.color.set(isDark.value ? 0xffffff : 0x1b1b1f);
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };

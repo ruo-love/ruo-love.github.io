@@ -7,7 +7,7 @@ module.exports = {
   lang: "zh",
   title: "Zero",
   outDir: "./dist",
-  appearance: "dark",
+  appearance: "light",
   head: [["link", { rel: "icon", href: "/logo.ico" }]],
   themeConfig: {
     logo: "/avatar.png",

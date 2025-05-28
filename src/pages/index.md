@@ -34,7 +34,6 @@ const { startRenderThreeD } = useThreeModel();
 onMounted(()=>{
   const sceneRef=document.getElementById('sceneRef')
   const { action,playAnimation }=startRenderThreeD(sceneRef, isDark);
-
 })
 
 </script>
