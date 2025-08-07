@@ -35,7 +35,6 @@ jobs:
         with:
           name: artifact
           path: dist
-
   Deploy:
     environment:
       name: github-pages
