@@ -4,8 +4,7 @@ const sidebar_webpack = require("./config/sidebar/webpack");
 const sidebar_eat = require("./config/sidebar/eat");
 const nav_config = require("./config/nav");
 module.exports = {
-  lang: "zh",
-  title: "Zero",
+  title: "Chris",
   outDir: "./dist",
   appearance: "light",
   head: [["link", { rel: "icon", href: "/logo.ico" }]],
@@ -24,9 +23,9 @@ module.exports = {
       pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
     },
     socialLinks: [{ icon: "github", link: "https://github.com/ruo-love" }],
-    footer: {
-      message: "",
-      copyright: "",
+     footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2025-present Chris'
     },
     nav: nav_config,
     sidebar: {

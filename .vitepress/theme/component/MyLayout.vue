@@ -13,7 +13,7 @@ const sceneRef = ref(null);
     <Content />
     <template #home-hero-info>
       <div class="title-wrap">
-        <h4 class="title mb"> Hello, I'm Ruo</h4>
+        <h4 class="title mb"> Hello, I'm Chris</h4>
       </div>
     </template>
     <template #home-hero-image>
